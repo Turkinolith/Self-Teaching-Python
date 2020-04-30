@@ -1,0 +1,26 @@
+***************************************************
+**** Function Construction - Default Arguments ****
+***************************************************
+
+Consider the following function:
+	def print_something(name, age):
+	    print("My name is", name, "and my age is", age)
+
+This will work if you pass it the following:
+	print_something("Larry", 39)
+
+Why? Because it is not concatonating the values, it simply is printing out the values and to the human eye there is no difference between an int 39 and str "39"
+
+But, lets say I only want to pass just the name value, I can do this with a default argument for age.
+To do this, inside the argument list of the function just assign a value to the variable.
+
+	def print_something(name = "Larry", age = "Unknown")
+	    print("My name is", name, "and my age is", age)
+	
+	print_something("Lisa")
+	
+	//returns: "My name is Lisa and my age is Unknown"
+	
+	print_something()
+	
+	//returns:"My name is Larry and my age is Unknown"
