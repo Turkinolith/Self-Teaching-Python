@@ -1,0 +1,91 @@
+*********************************
+**** Python Type Annotations ****
+*********************************
+
+
+https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+To add a type annotation use a colon followed by the type.
+
+To declare the output of a function, use a single line arrow function "->"
+In the below case, the function takes a string argument, another string argument, and an integer, then outputs a string.
+
+	def mystery_combine(a: str, b: str, times: int) -> str:
+	    return (a + b) * times
+	
+	//Returns: "abababab"
+
+For anything more than a primitive in Python, use the typing class. It describes types to type annotate any variable of any type. 
+It comes preloaded with type annotations such as Dict, Tuple, List, Set, and more! Then you can expand your type hints into use cases like the example below.
+
+	from typing import List
+
+	def print_names(names: List[str]) -> None:
+		for student in names:
+			print(student)
+
+This will tell the reader that 'names' should be a list of strings. Dictionaries work in a similar fashion.
+
+	from typing import Dict
+
+	def print_name_and_grade(grades: Dict[str, float]) -> None:
+		for student, grade in grades.items():
+			print(student, grade)
+
+The 'Dict[str, float]' type hint tells us that 'grades' should be a dictionary where the keys are strings and the values are floats.
+
+
+Type Aliases
+If you want to work with custom type names, you can use type aliases. Let's say you are working with a group of [x, y] points as Tuples, 
+then we could use an alias to map the Tuple type to a Point type.
+
+	from typing import List, Tuple
+
+
+	# Declare a point type annotation using a tuple of ints of [x, y]
+	Point = Tuple[int, int]
+
+
+	# Create a function designed to take in a list of Points
+	def print_points(points: List[Point]):
+		for point in points:
+			print("X:", point[0], "  Y:", point[1])
+
+
+Multiple Return Values
+If your function returns multiple values as a tuple, then just wrap the expected output as a 'typing.Tuple[<type 1>, <type 2>, ...]'
+
+	from typing import Tuple
+
+	def get_api_response() -> Tuple[int, int]:
+		successes, errors = ... # Some API call
+		return successes, errors
+
+The code above returns a tuple of the number of successes and errors from the API call, where both values are integers.
+By using 'Tuple[int, int]', we are indicating to a developer reading this that the function does in fact return multiple 'int' values.
+
+
+Multiple Possible Return Types
+If your function has a value that can take on a different number of forms, you can use the 'typing.Optional' or 'typing.Union' types.
+Use 'Optional' when the value will be be either of a certain type or 'None', exclusively.
+
+	from typing import Optional
+
+	def try_to_print(some_num: Optional[int]):
+		if some_num:
+			print(some_num)
+		else:
+			print('Value was None!')
+
+The above code indicates that 'some_num' can either be of type 'int' or 'None'.
+Use 'Union' when the value can take on more specific types.
+
+	from typing import Union
+
+	def print_grade(grade: Union[int, str]):
+		if isinstance(grade, str):
+			print(grade + ' percent')
+		else:
+			print(str(grade) + '%')
+
+The above code indicates that 'grade' can either be of type int or str. 
+This is helpful in our example of printing grades, so that we can print either 98% or Ninety Eight Percent, with no unexpected consequences.
