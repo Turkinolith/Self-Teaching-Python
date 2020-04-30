@@ -1,0 +1,30 @@
+****************************************************
+**** Function Construction - Infinite Arguments ****
+****************************************************
+
+Lets make a function called print_people
+	def print_people()
+
+Now, here is where I pass in arguments for the function, but I don't know how many I'll get.
+So I'll start with passing one argument, but it'll be prefixed with an asterisk
+
+	def print_people(*people):
+
+The asterisk tells it that the argument will be an array of all of the arguments passed into the function.
+continuing on, I write a for in loop.
+
+	def print_people(*people):
+	    for person in people:
+		    print("This person is", person)
+			
+	print_people("Larry", "Lisa", "Monkey", "Pinky", "Squeeks", "Brownie", "Cinnamon")
+	
+	//returns:
+	This person is Larry
+	This person is Lisa
+	This person is Monkey
+	This person is Pinky
+	This person is Squeeks
+	This person is Brownie
+	This person is Cinnamon
+
