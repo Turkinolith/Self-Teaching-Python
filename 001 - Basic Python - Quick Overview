@@ -1,0 +1,184 @@
+
+*******************************
+**** Basic Types - Numbers ****
+*******************************
+
+int()
+built-in function to convert a string to a number if the string contains only numbers.
+	int("5") + int("7")
+		//Returns: 12
+	
+Int, obviously, does not work with floating point.
+
+
+
+*******************************
+**** Basic Types - Strings ****
+*******************************
+
+Any text that you want to be treated as text.
+	"Hello String"
+
+To escape characters: \
+	print('I said: "don\'t worry about it"')
+
+
+***********************************
+**** Basic String Manipulation ****
+***********************************
+
+Contacting strings works just like JS
+	"Hello, " + "Larry" + "."
+		//Returns: Hello, Larry.
+	
+str()
+Converts object passed into it into a string.
+	"This costs " + str(6) + " dollars."
+		//Returns: 'This costs 6 dollars'
+
+	Mathmatical operations can happen within it:
+		'This costs ' + str( 6 + 5 ) + ' dollars'
+			//Returns: 'This costs 11 dollars'
+
+	"this is " + str(True)
+		//Returns: 'this is True'
+	**NOTE: The bool begins with an uppercase T. lowercase will cause an error! See Basic Types - Boolean.
+
+
+.split()
+Takes a parameter, where you want string to be split. Creates array with all elements that are split.
+	"Hello:Nick:World".split(":")
+		//Returns: ['Hello', 'Nick', 'World']
+
+Can use bracket notation to return a singular value from the array. *NOTE: Arrays are called "Lists" in Python.
+	"My name is " + "Hello:Nick:World".split(":")[1]
+		//Returns: 'My name is Nick'
+
+
+
+*******************************
+**** Basic Types - Boolean ****
+*******************************
+
+Boolean operators in Python are Uppercased!
+	True False
+NOT: true false
+
+
+ Comparison Operators:
+	5 == 5
+		//Returns: True
+		
+	5 == 4 
+		//Returns: False
+	
+	5 is 5
+		//Returns: True
+	
+	5 is not 5
+		//Returns: False
+		
+	5 != 5
+		//Returns: False
+	
+
+
+***********************************
+**** Basic Types: Dictionaries ****
+***********************************
+
+In Python Curly Braces are mostly (only?) used to define dictionaries.
+
+	{"Name": "Nick", "age": 27, "hobby": "code"}
+
+Just like using bracket notation to access List/Array values, you can use bracket notation here as well.
+
+	{"Name": "Nick", "age": 27, "hobby": "code"}["Name"]
+	//Returns: 'Nick'
+
+BIG NOTE: You don't have dot notation for dicts in Python like you do with objects in JS! Trying to make a dictionary behave like an object with attributes will probably lead to bad surprises.
+	Example: If a key in a dict happens to be a Python keyword, like string "for" then the attribute access fails and there is no elegant way to handle the case properly.
+
+
+
+****************************
+**** Built-in Functions ****
+****************************
+
+print() 
+	Like console.log
+	print("Hello")
+
+str() 
+	convert to string
+	str(1.5)
+	//returns: "1.5"
+
+int()
+	convert string of ints into an actual int.
+	int("7")
+	//returns: 7
+
+float()
+	convert string of a float number into actual float.
+	float("5.1")
+	//returns: 5.1
+
+bool()
+	convert value into a bool.
+	bool("True")
+	//returns: True
+	bool(1)
+	//returns: True
+	bool(8)
+	//returns: True
+	bool(0)
+	//returns: False
+	bool("")
+	//returns: False
+	bool([])
+	//returns: False
+
+len()
+	determines length of something, works with arrays and strings.
+	
+	len("Hello")
+	//returns: 5
+	
+	len(["Hello", "Larry"])
+	//returns: 2
+	
+
+sorted()
+	Sorts elements passed into it into ascending order.
+	NOTE: that uppercase letters are sorted first.
+	NOTE2: You can sort ints with floats, you can sort strings, but you can NOT sort strings mixed with numbers. 
+		However if the numbers are turned into strings they CAN be sorted together.
+	
+	sorted([12, 3, 9, 14, 42, 22, 39, 5, 28, 44])
+	//returns: [3, 5, 9, 12, 14, 22, 28, 39, 42, 44]
+	
+	sorted(["bb", "aa", "gg", "AA", "CCC"])
+	//returns:['AA', 'CCC', 'aa', 'bb', 'gg']
+
+
+**************************
+**** Define Functions ****
+**************************
+
+def 
+	Tells python you want to define a function
+
+The convention in python for function names is "snake case" with an underscore between words.
+Python doesn't use curly braces, instead you put a colon and it determines the end of the function by indentation.
+The first level of the function code will be indented by 4 spaces. So anything indented by 4 will be in that fist level.
+The format style pep8 actually wants 2 blank lines after the end of a function declaration.
+Also, unlike other C derived languages, lines don't need to be ended with semicolons.
+
+	def my_function():
+	    print("level one")
+	
+	print("This line isn't indented, so it's not considered part of the function")
+	
+	my_function()
+	
