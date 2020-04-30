@@ -1,0 +1,27 @@
+***************************************************
+**** Function Construction - Keyword Arguments ****
+***************************************************
+
+** NONE KEYWORD **
+
+Consider this function:
+	def print_something(name="Larry", age=39):
+    print("My name is ", name, " and my age is ", age)
+
+There is no way to omit the "name" argument and just pass the "age" argument. If I try 'print_something(27)' it will return 'My name is 27 and my age is Unknown'
+
+None is the equivalent to Null in other languages and with it I can do this:
+	print_something(None, 27)
+	//returns: 'My name is None and my age is 27'
+
+Better, but its still overwriting the default value of name.
+
+** Keyword argument assignment **
+
+Using the same function, lets do this:
+
+	print_something(age=27)
+	//returns: 'My name is Larry and my age is 27"
+
+There we go, now using the keyword of the variable name and declaring it, I can skip the 'name' argument.
+NOTE: This only works because name has a default value. otherwise it will error when run.
