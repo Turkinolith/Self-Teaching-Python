@@ -1,0 +1,24 @@
+
+*******************************************
+**** Importing libraries into a script ****
+*******************************************
+To import something: type import and the name of the module
+
+import re
+
+this imports the base regex library.
+
+Regex as I already know, is a mini programming language used in almost all languages.
+
+
+In this example we take a random string, manipulate the hell out of it, and finally return a regex that removes everything except the numbers.
+
+	import re
+
+	string = '"I am NOT YELLING", she said.  Though we knew it to not be true.'
+	new = re.sub('[.,\'A-Z+" "]', '', string)
+	string = string + "6 239 - 128"
+	new = re.sub('[^0-9]', '', string)
+	print(new)
+
+
