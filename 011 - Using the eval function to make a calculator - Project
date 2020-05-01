@@ -1,0 +1,137 @@
+
+So, now I have a loop that will mirror what I type and quit when I type quit.
+
+How do I make it do math? More specific, how can I have it do something simple like: 5+1. Or something more complex like 5+6+2*70-10?
+
+To do this I'll use a built-in function and start with get access to the 'previous' global variable and set up the function to use the new 
+global.
+
+	import re
+
+	print("Simple Calculator")
+	print("Type 'quit' to exit\n")
+
+	# Holds result of previously calculated equation. Default 0
+	previous = 0
+	run = True
+
+	def performMath():
+		global run
+		global previous
+		equation = input("Enter Equation:")
+		if equation == 'quit':
+			run = False
+		else:
+			previous = equation
+			print("You typed", previous)
+
+	while run:
+		performMath()
+
+
+
+Now I'll use the built-in function 'eval'
+
+    else:
+        previous = eval(equation)
+        print("You typed", previous)
+
+This function allows it to process complex mathematical operations in one statement
+	Enter Equation:49+32/20*(59-12*3)
+	You typed 85.80000000000001
+But it is dangerous because it will run python code inside of it.
+	Enter Equation:print("Hello World")
+	Hello World
+	You typed None
+
+So, you need to avoid using it to prevent a serious security issue.
+
+
+Lets say that I want to use this, but only allow the user to type mathmatical symbols or commands.
+So, lets make a regex to filter the input.
+
+	import re
+
+	print("Simple Calculator")
+	print("Type 'quit' to exit\n")
+
+	# Holds result of previously calculated equation. Default 0
+	previous = 0
+	run = True
+
+	def performMath():
+		global run
+		global previous
+		equation = input("Enter Equation:")
+		if equation == 'quit':
+			run = False
+		else:
+			equation = re.sub('[a-zA-z,.:()" "]', '', equation)
+			previous = eval(equation)
+			print("You typed", previous)
+
+	while run:
+		performMath()
+
+Now when it runs if I type: Hello 6
+	//returns 6
+So it strips out all characters except for the numbers and some essential number characters before it even runs.
+
+
+
+
+So, this now works, but lets make it so that it only says "Enter equation" the first time I run the program.
+Also, make it so that the previous result displays on subsequent loops and that I can perform operations upon it.
+Finally, have it display a goodbye message upon exiting.
+
+	import re
+
+	print("Simple Calculator")
+	print("Type 'quit' to exit\n")
+
+	# Holds result of previously calculated equation. Default 0
+	previous = 0
+	run = True
+
+	def performMath():
+		global run
+		global previous
+
+		# First time: say "Enter Equation:"
+		if previous == 0:
+			equation = input("Enter Equation:")
+		else:
+		# Nth times: repeat the previous result.
+			equation = input(str(previous))
+
+		# Exit if user types 'quit'
+		if equation == 'quit':
+		    print("Goodbye")
+			run = False
+		else:
+			# Filter out any letters, punctuation, etc.
+			equation = re.sub('[a-zA-z,.:()" "]', '', equation)
+
+			# First time: Display the result
+			if previous == 0:
+				previous = eval(equation)
+			else:
+			# Nth Times: display the result of the input performed on the previous.
+				previous = eval(str(previous) + equation)
+
+	while run:
+		performMath()
+
+
+
+Example inputs & Outputs:
+	Enter Equation:23
+	You typed 23
+	23+bob23Marley/2
+	You typed 34.5
+	34.5quit
+	Goodbye
+	
+Again, the eval function is dangerous. If I had the OS or sys modules imported and were able to pass the right commands, I could seriously damage the system.
+But, by filtering out letters and lots of the input characters with regex before it ever gets passed into the function I can mitigate a lot of the danger.
+Still, try to avoid using it where possible.
