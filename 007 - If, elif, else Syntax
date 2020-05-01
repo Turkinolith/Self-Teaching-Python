@@ -1,0 +1,19 @@
+**************************************
+**** Python If, elif, else Syntax ****
+**************************************
+
+Consider the function:
+
+	check = False
+	if not check:      // or if check == False:
+	  print("It is False")
+
+
+Could also do:
+	check = True
+	if not check:
+		print("It is false")
+	elif check == "Hamburger":
+		print("Yumm, Hamburger")
+	else:
+		print("It is True")
