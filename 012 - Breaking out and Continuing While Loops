@@ -1,0 +1,95 @@
+
+
+*************************************
+**** Breaking out of While Loops ****
+*************************************
+
+
+	import random
+
+	player_hp = 260
+	enemy_atk_low = 60
+	enemy_atk_high = 80
+
+	# This loop runs forever, because I never allow HP to reach 0.
+	# To exit the loop, use "break"
+	while player_hp > 0:
+		dmg = random.randrange(enemy_atk_low, enemy_atk_high)
+		player_hp = player_hp - dmg
+
+		if player_hp <= 30:
+			player_hp = 30
+
+		print("Enemy strikes for", dmg, "points of damage. Current HP is", player_hp)
+
+		if player_hp == 30:
+			print("Your health is low and you have been teleported to the nearest inn.")
+			break
+
+
+
+********************************
+**** Continuing While Loops ****
+********************************
+
+
+**** PASS ****
+Consider the bottom of the loop from the previous example:
+
+	if player_hp == 30:
+		print("Your health is low and you have been teleported to the nearest inn.")
+		break
+
+Lets move the bottom 2 lines out of the if statement and move them to their own section below:
+
+    if player_hp == 30:
+	
+	
+    print("Your health is low and you have been teleported to the nearest inn.")
+    break
+
+This will error, as Python doesn't like having empty if statements, it doesn't know what to do with the empty block of code.
+So, if I want to create an empty block of code, put a "pass" statement in it..
+
+    if player_hp == 30:
+		pass
+	
+    print("Your health is low and you have been teleported to the nearest inn.")
+    break
+
+This will now run once, but since the print and break are no longer inside of the if block it will say your health is low and break out at the end of the loop.
+
+
+
+**** CONTINUE ****
+
+Now, lets replace the pass keyword with continue and refactor the statement for player_hp
+
+  import random
+
+  player_hp = 260
+  enemy_atk_low = 60
+  enemy_atk_high = 80
+
+  # This loop runs forever, because I never allow HP to reach 0.
+  while player_hp > 0:
+      dmg = random.randrange(enemy_atk_low, enemy_atk_high)
+      player_hp = player_hp - dmg
+
+      if player_hp <= 30:
+          player_hp = 30
+
+      print("Enemy strikes for", dmg, "points of damage. Current HP is", player_hp)
+
+      if player_hp > 30:
+          continue
+
+      print("Your health is low and you have been teleported to the nearest inn.")
+      break
+
+Now the loop returns to its previous functionality, it will loop down, enter the if statement, then hit the continue keyword.
+Continue will make the loop resume immediately from the top, so it never hits the print statement and the break until the conditions for the if statement are 
+no longer valid.
+
+It does the same thing as the initial implementation, just in a different way.
+
