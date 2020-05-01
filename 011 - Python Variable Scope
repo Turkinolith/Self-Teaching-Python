@@ -1,0 +1,42 @@
+*******************************
+**** Python Variable Scope ****
+*******************************
+
+Consider this program:
+
+	print("Simple Calculator")
+	print("Type 'quit' to exit\n")
+
+	# Holds result of previously calculated equation. Default 0
+	previous = 0
+	run = True
+
+	def performMath():
+		equation = input("Enter Equation:")
+		if equation == 'quit':
+			run = False
+		else:
+			print("You typed", equation)
+
+	while run:
+		performMath()
+
+While it is running, if you type 'quit' nothing happens.
+Why is this? 
+Because the variable "run" is set outside of any function in the program. It's scope is global.
+The function "performMath", inside of an if statement within it, is trying to set "run" but it does not have access to that variable scope.
+To get access to it I need to bring the run variable inside of the function.
+
+*NOTE: in Pycharm it even has 'run' shaded grey and the tooltip "Shadows name 'run' from outer scope. Local variable 'run' value is not used"
+
+To fix this, use the global keyword on the variable inside of the function.
+
+	def performMath():
+		global run
+		equation = input("Enter Equation:")
+		if equation == 'quit':
+			run = False
+		else:
+			print("You typed", equation)
+
+Now when I type "quit" it will exit.
