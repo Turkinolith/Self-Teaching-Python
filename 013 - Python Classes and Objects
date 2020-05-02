@@ -1,0 +1,53 @@
+************************************
+**** Python Classes and Objects ****
+************************************
+
+	*** Defining a Class ***
+to create a class, use the class keyword and name it like you would a function, sans paren.
+
+	class Enemy:
+
+	*** Parameters & Methods ***
+class parameters and methods are defined below, indented just like in a function.
+NOTE: (self) in Python works like "this" in JS.
+
+class Enemy:
+    atk_low = 60
+    atk_high = 80
+
+    def get_Atk(self):
+        print(self.atk_low)
+
+
+	*** Instancing a Class ***
+
+enemy1 = Enemy()
+
+	
+	*** Calling a Method ***
+
+enemy1.get_Atk()
+
+
+
+Putting it all together:
+
+	import random
+
+	class Enemy:
+		name: str = "Goblin"
+		atk_low: int = 60
+		atk_high: int = 80
+
+		def get_atk(self) -> int:
+			dmg = random.randrange(self.atk_low, self.atk_high)
+			return dmg
+
+
+	enemy1 = Enemy()
+	print(enemy1.name, "attacks for", enemy1.get_atk())
+
+	enemy2 = Enemy()
+	print(enemy2.name, "attacks for", enemy1.get_atk())
+	
+	
