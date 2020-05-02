@@ -1,0 +1,50 @@
+	
+**********************************
+**** Class Instance Variables ****
+**********************************
+
+In the class example I set up two objects of the "Enemy" class.
+Both of them have the same attack power as the values are static.
+Lets get them to have two different enemies with different attack power even though their from the same class.
+
+First put in the following method:
+	def __init__(self):
+
+This is a method that is ran when the class has been instantiated.
+
+I'll pass 2 more variables into that function:
+
+	def __init__(self, atk_low, atk_high):
+
+Now, I can set the properties on the class to those passed variables.
+
+	def __init__(self, atk_low, atk_high):
+		self.atk_low: int = atk_low
+		self.atk_high: int = atk_high
+
+
+With some refactoring my code now has a default value for the enemy of 1-5 damage unless I put in my own values.
+Also, I refactored the attack code so that it is more encapsulated:
+
+	import random
+
+	class Enemy:
+		def __init__(self, atk_low: int = 1, atk_high: int = 5):
+			self.atk_low: int = atk_low
+			self.atk_high: int = atk_high
+
+		name: str = "Goblin"
+
+		def get_atk(self) -> int:
+			dmg = random.randrange(self.atk_low, self.atk_high)
+			print(self.name, "attacks for", dmg)
+			return dmg
+
+
+	enemy1 = Enemy(10, 20)
+	enemy1.get_atk()
+
+
+	enemy2 = Enemy()
+	enemy2.get_atk()
+
