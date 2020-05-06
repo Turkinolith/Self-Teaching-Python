@@ -1,0 +1,107 @@
+************
+**** In ****
+************
+
+Used to check for membership, if one thing is inside of a list, a tuple or a set.
+
+EX:
+friends = ["Larry", "Lisa", "Monkey"]
+print("Monkey" in friends)
+// True
+
+In this case it checks if "Monkey" is a member of the list "friends"
+
+Now lets say I have a {set} of movies recently watched, remember entries in a set are unique and have no particular order.
+movies_watched = {"The Matrix, "Green Book", "Her"}
+user_movie = input('Enter something you've watched recently: ")
+
+print(user_movie in movies_watched)
+if you type in "Monty Python" you get false, if you type "The Matrix" you get true.
+
+The in keyword works in sequences like [list], (tuple), {set}, and in "string"
+So you can see if a "string" is inside another "string", a sub-string.
+print("rix" in "The Matrix")
+// True
+
+
+*********************************************
+**** If statements with the "in" keyword ****
+*********************************************
+movies_watched = {"The Matrix, "Green Book", "Her"}
+user_movie = input('Enter something you've watched recently: ")
+
+if user_movie in movies_watched:
+    print(f"I've watched {user_movie} too!")
+else:
+    print("I've not watched that yet.")
+
+
+Example #2 - Magic number, ask user to enter a number and then tell the user if they got the number right or not.
+
+number = 7
+user_input = input("Enter 'y' if you would like to play: ")
+if user_input == "y":
+    user_number = int(input("Guess our number: "))
+    if user_number == number:
+        print("You guessed correctly!")
+    else: 
+        print("sorry, it's wrong!")
+
+In this case, it works as long as the user selects a lowercase "y" for their first input.
+What if they use an Uppercase "Y"? the best way to handle this is to use .lower() on the input.
+Another way is to use the in keyword, then add a tuple (note: doesn't have to be a tuple, anything where the 'in' keyword works on would work as well)
+
+
+if user_input in ("y", "Y"):
+
+In this case it uses the ability of the 'in' keyword to work within a string to see if the upper or lowercase Y is located within it, if so, return true.
+Yes, this does cause the problem that ANY string with a y or Y in it would also return true, hense its better to use .lower().
+
+Another place to use the 'in' keyword is if I wanted to give the user a hint as to how close they are to the magic number.
+Lets say I want to tell the user their off by 1 if they enter a 6 or 8.
+
+if user_input == "y":
+    user_number = int(input("Guess our number: "))
+    if user_number == number:
+        print("You guessed correctly!")
+    elif number - user_number in(1, -1):
+        print("You were off by one.")
+    else: 
+        print("sorry, it's wrong!")
+
+Whats going on here is defining a tuple of 2 numbers I'm willing to accept, (1, -1)
+Then, I subtract from my number, which is 7, the input, which is 6 or 8.
+That returns 1 or -1, which is in 1 or -1, which is true, which will then print "You were off by one."
+
+This could be handy if you have a longer set of values to compare against.
+BUT, for this specific situation there is a better way of doing it without the "in" keyword which is using Absolute Values.
+
+*************************
+**** Absolute Values ****
+*************************
+if user_input == "y":
+    user_number = int(input("Guess our number: "))
+    if user_number == number:
+        print("You guessed correctly!")
+    elif abs(number - user_number) == 1:
+        print("You were off by one.")
+    else: 
+        print("sorry, it's wrong!")
+
+abs() returns the absolute value of an argument. So, if you pass it 1, the abs of 1 is 1, if you pass it -1, the abs of -1 is 1.
+It will always give you how far away the user number is from the magic number in positive terms, so the statement can now be simply
+elif abs(number - number2) == 1:
+    print("you were off by one.")
+
+or, even better:
+
+if user_input == "y":
+    user_number = int(input("Guess our number: "))
+    guess_delta = abs(number - number2)
+    if user_number == number:
+        print("You guessed correctly!")
+    else:
+        print(f"Sorry, you were off by {guess_delta}")
+
+
+
