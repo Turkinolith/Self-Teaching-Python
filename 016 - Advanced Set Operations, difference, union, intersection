@@ -1,0 +1,40 @@
+friends = {"Bob", "Rolf", "Anne"}
+abroad = {"Bob", "Anne"}
+Lets say we're tracking our group of friends and the group of friends who are abroad.
+
+This means that given the above, if I made a set of friends who were local it would look like this.
+local_friends = {"Rolf"}
+
+*** DIFFERENCE ***
+
+But, if Rolf went abroad and I adjusted the friends and abroad sets, it would not adjust the local_friends set since it is hard-coded.
+Here is how to use the other two sets to auto-calculate who is local.
+  local_friends = friends.difference(abroad)
+This starts with {friends} being the starting point, and removes the matches from {abroad}
+
+If I did the function in reverse:
+  abroad.difference(friends)
+It will take {"Bob", "Anne"} and subtract from it {"Bob", "Rolf", "Anne"}, Rolf isn't even in it, so you'll be left with an empty set.
+  set()
+*Note the normal braces.
+
+*** UNION ***
+
+If instead I had a list of local friends and abroad friends, I could put the two sets together to get a total list of friends.
+local = {"Rolf"}
+abroad = {"Bob", "Anne"}
+
+The Union property unites two sets and gives the total of both.
+friends = local.union(abroad)
+  //"Bob", "Rolf", "Anne"
+
+*** INTERSECTION ***
+
+Here are friends that study two different catagories.
+art = {"Bob", "Rolf", "Anne", "Charlie"}
+science = {"Bob", "Jen, "Adam", "Anne"}
+
+I already know how to figure out who studies only each individual thing using difference. To find who studies both use the intersection property.
+
+both = art.intersection(science)
+  //"Bob", "Anne"
