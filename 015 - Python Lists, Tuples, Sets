@@ -1,0 +1,33 @@
+List is like a JS array. it is denoted with square braces. You can add and remove from it.
+  my_list = ["Larry", "Lisa", "Monkey"]
+
+Tuple is denoted with normal braces, you can NOT add or remove entries from it.
+  my_tuple = ("Larry", "Lisa", "Monkey")
+
+Set is denoted with curly braces. Key difference is while you can add or remove elements, you can't have DUPLICATE elements.
+  my_set = {"Larry", "Lisa", "Monkey}
+
+
+Lists & Tuples keep order of elements. So when printed they will always have their order.
+Sets do NOT keep order, so it could be different each printout.
+
+Subscript(bracket) notation works to print out entries in Lists and Tuples, NOT sets.
+  print(my_list[0])
+    //"Larry"
+
+Can edit List values like in JS by treating them like a variable. This will error on Tuples as you can't chang them after creation.
+  my_list[0] = "Turk"
+  print(my_list)
+    //"Turk", "Lisa", "Monkey"
+Obviously this also won't work on sets, since the index values can change each time its called.
+
+** Attributes/Methods **
+************************
+--Lists--
+.append() is the same as JS .push(), adds element to end of list.
+.remove(value) will remove the value from inside of the list.
+
+--Sets--
+.add(value) adds the value into the set, note its not append, because append means "add at the end" but sets don't have an "end" since there
+  is no order. Note that if you do the same value twice, there can be no duplicate values in a set so the 2nd add gets ignored.
+
