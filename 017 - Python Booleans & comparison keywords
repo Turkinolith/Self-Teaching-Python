@@ -1,0 +1,36 @@
+As in other languages, bools are created by comparisons between two things.
+5 == 5, 5 > 5, 10 != 10, etc.
+
+Some comparisons dont work on some data types or behave differently based on the type.
+
+  *** PYTHON COMPARISON KEYWORDS ***
+As well as comparisons there are Python keywords to also do comparsions.
+
+************
+**** is ****
+************
+Is checks if two arguments are exactly the same thing.
+
+Take these two lists:
+friends = ["Larry", "Lisa"]
+abroad = ["Larry", "Lisa"]
+
+print(friends == abroad)
+// True
+The double equals compares the values inside of the two lists and returns true as the values are the same.
+
+print(friends is abroad)
+// False 
+This checks the memory values, the list "friends" is not the same as the list "abroad", even though the data contained in them is the same.
+So, the "is" comparison returns false.
+
+if I did:
+print(friends is friends)
+// True
+
+Also if I did:
+friends = ["Larry", "Lisa"]
+abroad = friends
+print(friends is abroad)
+// True
+Because abroad is now just pointer to "friends"
